@@ -28,6 +28,7 @@ class PushDialog extends Dialog
   activate: (remotes) ->
     @fromBranch.val(git.getLocalBranch())
     @toBranch.find('option').remove()
+    @toBranch.append "<option value=" + git.getRemoteBranch().replace('refs/remotes/', '') + " selected>" + git.getRemoteBranch().replace('refs/remotes/', '') + "</option>"
     for remote in remotes
       @toBranch.append "<option value='#{remote}'>#{remote}</option>"
     return super()
